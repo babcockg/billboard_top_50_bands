@@ -3,7 +3,7 @@ import aiohttp
 import ssl
 from bs4 import BeautifulSoup
 import time
-
+import os
 
 async def fetch_html(session, url):
     """Fetches the HTML content of a given URL asynchronously."""
@@ -58,9 +58,10 @@ urls_list = [
 
 # Run the main asynchronous function
 if __name__ == "__main__":
+    os.system('cls' if os.name == 'nt' else 'clear')
     results = asyncio.run(scrape_urls(urls_list))
     leading_spaces = 2
     for result in results[0]:
         period_position = result.string.find(".")
-        print(" " * (leading_spaces - period_position), end="")
-        print(result.string)
+        print(f"{' '* (leading_spaces - period_position)} {result.string}")
+
